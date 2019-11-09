@@ -23,7 +23,7 @@ navigator.geolocation.getCurrentPosition( function (position) {
   const Http = new XMLHttpRequest();
   var data='lat='+pos.lat+'&lng='+pos.lng;
   //var params = 'orem=ipsum&name=binny';
-  const url = "http://localhost:3000/theftmsg";
+  const url = "https://gpstrack10.herokuapp.com/theftmsg";
   Http.open("POST",url);
   Http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   //Http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -166,7 +166,7 @@ navigator.geolocation.getCurrentPosition( function (position) {
 <span style="font-size:25px;margin-top:50px;margin-left:90px;">Find Nearby Places</span>
 <div class="flex2">
   <p class="col">
-   <a href="http://localhost:3000/track">/
+   <a href="https://gpstrack10.herokuapp.com/track">/
      <img src="logof.png" style=" width:280px; height:280px; margin-left:10px;">
    </a>
 
@@ -176,7 +176,7 @@ navigator.geolocation.getCurrentPosition( function (position) {
   </p>
 
   <p class="col">
-    <a href="http://localhost:3000/nearby">
+    <a href="https://gpstrack10.herokuapp.com/nearby">
     <img src="nearby.jpeg" alt="HTML tutorial" style="width:280px;height:280px;border:0; margin-left:20px">
   </a></p>
 </div>
