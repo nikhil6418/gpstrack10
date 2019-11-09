@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"/>
+ <script type="text/javascript">
+ var flag=1;
+ var a;
+ var ack;
+ var pos= {};
+
+if(navigator.geolocation){
+navigator.geolocation.getCurrentPosition( function (position) {
+        pos.lat =  position.coords.latitude,
+        pos.lng = position.coords.longitude
+
+     console.log(pos);
+  });
+
+}
+
+ function printfunc(){
+  console.log("print_func_executed");
+  const Http = new XMLHttpRequest();
+  var data='lat='+pos.lat+'&lng='+pos.lng;
+  //var params = 'orem=ipsum&name=binny';
+  const url = "http://localhost:3000/theftmsg";
+  Http.open("POST",url);
+  Http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  //Http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  //Http.send(pos);
+  ////Http.send("lat=" + pos.lat + "&lng=" + pos.lng);
+  //Http.JSON(pos);
+  Http.send(data);
+
+  Http.onload = function () {
+  if (Http.readyState === Http.DONE) {
+     data = (JSON.parse(Http.responseText));
+     ack=data.msg;
+     if(ack==1)
+     clearInterval(a);
+   }
+ };
+
+
+}
+
+ function sendMsg(){
+  a= setInterval(printfunc,3000);
+ }
+ function change(){
+  var image = document.getElementById('circle');
+  if(flag==1){
+   image.src="on.jpeg";
+   flag=0;
+   sendMsg();
+  }
+  else{
+  image.src = "off.jpeg";
+  flag=1;
+  clearInterval(a);
+  }
+
+ }
+ </script>
+ <style>
+ .logot{
+   padding-top: 5px;
+   padding-left: 30px;
+   padding-bottom: 10px;
+   height:70px;
+   width:70px;
+   padding-right: 10px;
+ }
+ /* .column1 {
+  float: left;
+  width: 50%;
+  height: 90px;
+  padding-top: 20px;
+
+} */
+/* .column2 {
+  padding-top: 20px;
+ float: right;
+ width: 50%;
+ height: 90px;
+ text-align: right;
+ margin-top: 23px;
+
+
+} */
+
+.baset{
+  padding-bottom: 1px;
+  padding-bottom: 5px;
+}
+.column2txt{
+  border: 2px solid  #6F6968;
+  border-radius: 5px;
+  margin-right: 40px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-right: 40px;
+  padding-left: 40px;
+  color: #6F6968;
+}
+
+.column3{
+
+  height:55px;
+  background-color: black;
+  width:100%;
+  font-size:40px;
+  padding-top: 10px;
+  color:white;
+  font-style: oblique;
+  font-family:monospace;
+
+  /* clear : both;s */
+}
+.col{
+
+  height:400px;
+  width:33%;
+  /* background-color: red; */
+  /* width:100% */
+  /* clear : both;s */
+}
+
+.column3::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex2{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+
+ </style>
+
+</head>
+<body>
+  <div class="flex">
+   <div>
+  <img src="logot.png" class="logot" >
+  <img src="baset.png" class="baset">
+  </div>
+  <div style="margin-top:29px" >
+    <span class="column2txt">
+    Get Started
+  </span>
+</div>
+</div>
+</div>
+<hr align="left|center|right" width="75%" style="margin-top:20px;">
+<div style="font-size:40px; margin-top:20px; margin-bottom:50px"><center>Travel Smarter With Revolutionary Features<center></div>
+<span style="font-size:25px;margin-top:50px;margin-left:50px;">Location Tracking</span>
+<span style="font-size:25px;margin-top:50px;margin-left:110px;">Night Safety Mode</span>
+<span style="font-size:25px;margin-top:50px;margin-left:90px;">Find Nearby Places</span>
+<div class="flex2">
+  <p class="col">
+   <a href="http://localhost:3000/track">/
+     <img src="logof.png" style=" width:280px; height:280px; margin-left:10px;">
+   </a>
+
+  </p>
+  <p class="col">
+  <img src="off.jpeg"  style="width:280px; height:280px; margin-left:20px;" alt="Circle" id="circle" onclick="change();">
+  </p>
+
+  <p class="col">
+    <a href="http://localhost:3000/nearby">
+    <img src="nearby.jpeg" alt="HTML tutorial" style="width:280px;height:280px;border:0; margin-left:20px">
+  </a></p>
+</div>
+
+
+  <!--<div class="row">
+    <div class="column1" style="background-color:#aaa;">
+      <h2>Column 1</h2>
+      <p>Some text..</p>
+    </div>
+    <div class="column" style="background-color:#bbb;">
+      <h2>Column 2</h2>
+      <p>Some text..</p>
+    </div>
+  </div> -->
+
+
+<!--
+<a href="http://localhost:3000/nearby">
+  <img src="track.png" alt="HTML tutorial" style="width:42px;height:42px;border:0;">
+</a>
+<a href="http://localhost:3000/track">
+  <img src="track.png" alt="HTML tutorial" style="width:42px;height:42px;border:0;">
+</a> -->
+</body>
+</html>
