@@ -69,8 +69,12 @@ app.use('/gps', (req, res) => {
 
 //sendcoords
 app.use('/sc',(req,res) => {
-  lat=lat+0.0001;
-  lng=lng+0.0001
+  if(lat>23.177209){
+   lat=23.177102;
+   lng=80.024780;
+     }  
+  lat=lat+0.000005;
+  lng=lng+0.000005;
 console.log("coords sent");
 res.send('{"lat":'+lat+',"lng":'+lng+'}');
 })
