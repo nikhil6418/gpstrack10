@@ -41,7 +41,11 @@ next();
 
 
 // for emergency switch
-
+app.use('/es',(req,res) => {
+  var textMessage = "Alert! Help needed, last received co-ordinates are latitude:-" + lat +"longitude:-" +lng; 
+  nexmo.message.sendSms(from, to, textMessage);
+  
+})
 
 
 
