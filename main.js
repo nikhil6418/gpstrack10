@@ -49,15 +49,15 @@ next();
 //for gps routes
 app.use('/gps', (req, res) => {
   //console.log(req.body);
-  console.log("gps route activated");
-  console.log(req.body);
+  /*console.log("gps route activated");
+  console.log(req.body);*/
   var coords=JSON.stringify(req.body);
-  console.log(coords)
+  /*console.log(coords)
   lat=coords.lat;
   lng=coords.lng;
   console.log(lat);
   console.log(lng);
-
+*/
 
 }
 )
